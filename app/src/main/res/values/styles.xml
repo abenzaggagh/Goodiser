@@ -1,0 +1,39 @@
+<resources>
+
+    <!-- Application Theme -->
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/secondaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <!-- Authentification Theme -->
+
+    <style name="SignInTheme" parent="AppTheme">
+
+    </style>
+
+    <style name="SignUpTheme" parent="AppTheme">
+
+    </style>
+
+
+
+
+
+
+    <!-- Feed Style -->
+
+    <!-- TODO: Changing the code to fit the proposed design. -->
+    <style name="Feed" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="toolbarStyle">@style/Toolbar</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+</resources>

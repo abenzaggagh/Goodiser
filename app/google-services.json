@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "863790175478",
+    "firebase_url": "https://goodiser-4528d.firebaseio.com",
+    "project_id": "goodiser-4528d",
+    "storage_bucket": "goodiser-4528d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863790175478:android:8a14e93b2b2cc9f4",
+        "android_client_info": {
+          "package_name": "com.goodiser.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863790175478-agjnustof17706n8jgoentif1td6f7l9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goodiser.android",
+            "certificate_hash": "52a67ccb738e6aec84369510d287c30768a17cbb"
+          }
+        },
+        {
+          "client_id": "863790175478-g03ret00vru2lfp710aah3ln6cjncf6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxPGuYoXFr1xiC55EGPVZIO3m_0WCTENI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863790175478-g03ret00vru2lfp710aah3ln6cjncf6n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "863790175478-mpeeo1otv4cp34b06ob9cdev5i2665oi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Amine.Goodiser"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
