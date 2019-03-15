@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".auth.AuthentificationActivity"
+            android:name=".auth.AuthenticationActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

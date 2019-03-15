@@ -19,7 +19,13 @@
     </style>
 
 
+    <style name="SignInTheme.AppBarOverlay" parent="AppTheme">
 
+    </style>
+
+    <style name="SignInTheme.PopupOverlay" parent="AppTheme">
+
+    </style>
 
 
 
