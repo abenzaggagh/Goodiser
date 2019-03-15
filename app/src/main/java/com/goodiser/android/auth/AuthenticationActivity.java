@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.goodiser.android.app.FeedActivity;
@@ -22,22 +23,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class AuthenticationActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private static final int REQUEST_READ_CONTACTS = 0;
+public class AuthenticationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = null;
 
-    // UI Elements
     private EditText mEmailView = null;
     private EditText mPasswordView = null;
+    private Button mSignInButton = null;
+    private ProgressBar mSignInProgress = null;
 
-    // User input
     protected String EMAIL = null;
     protected String PASSWORD = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
@@ -45,6 +45,8 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
 
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+        mSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
 
     }
 
@@ -52,8 +54,10 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     public void onStart() {
         super.onStart();
 
-        // mAuth.getCurrentUser()
+
     }
+
+
 
     private String getEmail() {
         return this.EMAIL;
@@ -75,12 +79,19 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    private void signIn(View v) {
+    public void signIn(View view) {
 
-        this.EMAIL = mEmailView.getText().toString();
-        this.PASSWORD = mPasswordView.getText().toString();
 
-        //if (this.isEmailValid(EMAIL) && this.isPasswordValid(PASSWORD)) {
+        EMAIL = mEmailView.getText().toString();
+        PASSWORD = mPasswordView.getText().toString();
+
+
+
+        mSignInProgress.setVisibility(View.VISIBLE);
+        mSignInButton.setVisibility(View.GONE);
+
+
+        if (this.isEmailValid(EMAIL) && this.isPasswordValid(PASSWORD)) {
          //   hideSoftKeyboard(this);
 
             mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -95,22 +106,36 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
                         startActivity(intent);
 
                     } else {
+
                         Toast.makeText(AuthenticationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+
+                        mSignInProgress.setVisibility(View.GONE);
+                        mSignInButton.setVisibility(View.VISIBLE);
+
                     }
 
                 }
             });
 
-       // }
+        } else {
 
-    }
+            Toast.makeText(AuthenticationActivity.this, "Please enter your email and password.", Toast.LENGTH_SHORT).show();
 
+            mSignInProgress.setVisibility(View.GONE);
+            mSignInButton.setVisibility(View.VISIBLE);
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId()==R.id.email_sign_in_button) {
-            signIn(v);
         }
+
     }
+
+
+
+
+
+
+
+
+
+
 }
 
