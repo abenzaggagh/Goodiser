@@ -12,4 +12,6 @@
     <color name="primaryTextColor">#442b2d</color>
     <color name="secondaryTextColor">#84565e</color>
 
+    <color name="errorColor">#CF0000</color>
+
 </resources>

@@ -42,4 +42,18 @@
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
+
+    <!-- Goodiser Button Style -->
+    <style name="Goodiser.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/secondaryColor</item>
+        <item name="android:bottomRightRadius">16dp</item>
+        <item name="android:bottomLeftRadius">16dp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Goodiser.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
+
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
 </resources>

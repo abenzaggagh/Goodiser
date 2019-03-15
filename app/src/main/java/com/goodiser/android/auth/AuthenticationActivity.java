@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private EditText mPasswordView = null;
     private Button mSignInButton = null;
     private ProgressBar mSignInProgress = null;
+    private ImageView mNotificationView = null;
 
     // User Data
     protected String EMAIL = null;
@@ -47,6 +49,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
         mSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
+        mNotificationView = (ImageView) findViewById(R.id.notification_view);
 
     }
 
@@ -78,8 +81,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         EMAIL = mEmailView.getText().toString();
         PASSWORD = mPasswordView.getText().toString();
 
-
-
         mSignInProgress.setVisibility(View.VISIBLE);
         mSignInButton.setVisibility(View.GONE);
 
@@ -101,6 +102,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                     } else {
 
+                        mNotificationView.setVisibility(View.VISIBLE);
+
                         Toast.makeText(AuthenticationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                         mSignInProgress.setVisibility(View.GONE);
@@ -113,7 +116,9 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         } else {
 
-            Toast.makeText(AuthenticationActivity.this, "Please enter your email and password.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(AuthenticationActivity.this, "Please enter your email and password.", Toast.LENGTH_SHORT).show();
+
+            mNotificationView.setVisibility(View.VISIBLE);
 
             mSignInProgress.setVisibility(View.GONE);
             mSignInButton.setVisibility(View.VISIBLE);
