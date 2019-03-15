@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.goodiser.android.app.FeedActivity;
@@ -26,12 +27,19 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = null;
 
+    // UI Forms
+    private ScrollView mSignInView = null;
+    private ScrollView mSignUpView = null;
+
     // UI Elements
     private EditText mEmailView = null;
     private EditText mPasswordView = null;
     private Button mSignInButton = null;
     private ProgressBar mSignInProgress = null;
     private ImageView mNotificationView = null;
+
+    private Button mToSignUp = null;
+    private Button mToSignIn = null;
 
     // User Data
     protected String EMAIL = null;
@@ -47,9 +55,29 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
-        mSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
         mNotificationView = (ImageView) findViewById(R.id.notification_view);
+
+        mToSignUp = (Button) findViewById(R.id.to_sign_up);
+        mToSignIn = (Button) findViewById(R.id.to_sign_in);
+
+        mSignInView = (ScrollView) findViewById(R.id.signin_form);
+        mSignUpView = (ScrollView) findViewById(R.id.signup_form);
+
+        mToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toSignUp();
+            }
+        });
+
+        mToSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toSignIn();
+            }
+        });
 
     }
 
@@ -60,7 +88,15 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     }
 
+    public void toSignUp() {
+        mSignInView.setVisibility(View.GONE);
+        mSignUpView.setVisibility(View.VISIBLE);
+    }
 
+    public void toSignIn() {
+        mSignInView.setVisibility(View.VISIBLE);
+        mSignUpView.setVisibility(View.GONE);
+    }
 
     private boolean isEmailValid(String email) {
         return !email.isEmpty() && email.contains("@");
@@ -124,6 +160,10 @@ public class AuthenticationActivity extends AppCompatActivity {
             mSignInButton.setVisibility(View.VISIBLE);
 
         }
+
+    }
+
+    public void signUp(View view) {
 
     }
 

@@ -26,6 +26,9 @@
     <string name="action_settings">Settings</string>
     <string name="notification">Notification View</string>
     <string name="forgot_password">Forgot Your Password?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="sign_up">SIGN UP</string>
 
 
 </resources>
