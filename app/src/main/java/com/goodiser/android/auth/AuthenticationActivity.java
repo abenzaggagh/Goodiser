@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,16 +21,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class AuthenticationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = null;
 
+    // UI Elements
     private EditText mEmailView = null;
     private EditText mPasswordView = null;
     private Button mSignInButton = null;
     private ProgressBar mSignInProgress = null;
 
+    // User Data
     protected String EMAIL = null;
     protected String PASSWORD = null;
 
@@ -39,7 +39,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_authentication);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -58,13 +58,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
 
-
-    private String getEmail() {
-        return this.EMAIL;
-    }
-    private String getPassword() {
-        return this.PASSWORD;
-    }
 
     private boolean isEmailValid(String email) {
         return !email.isEmpty() && email.contains("@");
@@ -92,7 +85,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
 
         if (this.isEmailValid(EMAIL) && this.isPasswordValid(PASSWORD)) {
-         //   hideSoftKeyboard(this);
+
+            hideSoftKeyboard(this);
 
             mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
