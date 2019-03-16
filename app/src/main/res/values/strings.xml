@@ -29,6 +29,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="name">Name</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="notification_error_1">Your information are invalid.</string>
 
 
 </resources>

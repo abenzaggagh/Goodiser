@@ -2,6 +2,7 @@ package com.goodiser.android.auth;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.goodiser.android.app.FeedActivity;
@@ -23,33 +25,47 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AuthenticationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = null;
+    private FirebaseFirestore mDatabase = null;
 
     // UI Forms
     private ScrollView mSignInView = null;
     private ScrollView mSignUpView = null;
 
-    // UI Elements
+    /**
+     * UI Elements
+     *
+     * Email TextField
+     * Password TextField
+     *
+     */
     private EditText mEmailView = null;
     private EditText mPasswordView = null;
 
     private EditText mNameView = null;
-    private EditText nPhoneView = null;
-
+    private EditText mPhoneView = null;
 
     private Button mSignInButton = null;
     private ProgressBar mSignInProgress = null;
-    private ImageView mNotificationView = null;
 
+    // UI Notifications
+    private ImageView mNotificationView = null;
+    private TextView mNotificationText = null;
+
+    // Changing Layout Buttons
     private Button mToSignUp;
     private Button mToSignIn;
 
     // User Data
+    protected String NAME = null;
     protected String EMAIL = null;
+    protected Integer PHONE = null;
     protected String PASSWORD = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +75,19 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mNameView = (EditText) findViewById(R.id.name_signup);
-        nPhoneView = (EditText) findViewById(R.id.phone_signup);
-
+        mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
         mSignInButton = (Button) findViewById(R.id.sign_in_button);
 
-        mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
-        mNotificationView = (ImageView) findViewById(R.id.notification_view);
 
-        mToSignUp = (Button) findViewById(R.id.to_sign_up);
-        mToSignIn = (Button) findViewById(R.id.to_sign_in);
+        mNotificationView = (ImageView) findViewById(R.id.notification_view);
+        mNotificationText = (TextView) findViewById(R.id.notification_text);
+
 
         mSignInView = (ScrollView) findViewById(R.id.signin_form);
         mSignUpView = (ScrollView) findViewById(R.id.signup_form);
+
+        mToSignUp = (Button) findViewById(R.id.to_sign_up);
+        mToSignIn = (Button) findViewById(R.id.to_sign_in);
 
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
@@ -101,13 +117,24 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     public void toSignUp() {
+
+        mNameView = (EditText) findViewById(R.id.name_signup);
+        mEmailView = (EditText) findViewById(R.id.email_signup);
+        mPhoneView = (EditText) findViewById(R.id.phone_signup);
+        mPasswordView = (EditText) findViewById(R.id.password_signup);
+
         mSignInView.setVisibility(View.GONE);
         mSignUpView.setVisibility(View.VISIBLE);
     }
 
     public void toSignIn() {
+
+        mEmailView = (EditText) findViewById(R.id.email);
+        mPasswordView = (EditText) findViewById(R.id.password);
+
         mSignInView.setVisibility(View.VISIBLE);
         mSignUpView.setVisibility(View.GONE);
+
     }
 
     private boolean isEmailValid(String email) {
@@ -123,10 +150,15 @@ public class AuthenticationActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    public void signIn(View view) {
+    /**
+     * Authentication Methods
+     *
+     * Sign In
+     * Sign Up
+     *
+     */
 
-        mEmailView = (EditText) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
+    public void signIn(View view) {
 
         EMAIL = mEmailView.getText().toString();
         PASSWORD = mPasswordView.getText().toString();
@@ -152,9 +184,18 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                     } else {
 
-                        mNotificationView.setVisibility(View.VISIBLE);
-
-                        Toast.makeText(AuthenticationActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        new CountDownTimer(3000, 1000){
+                            public void onTick(long millisUntilFinished){
+                                mNotificationView.setVisibility(View.VISIBLE);
+                                mNotificationText.setVisibility(View.VISIBLE);
+                                mNotificationText.setText("Your information are incorrect.");
+                            }
+                            public  void onFinish(){
+                                mNotificationView.setVisibility(View.GONE);
+                                mNotificationText.setVisibility(View.GONE);
+                                mNotificationText.setText("");
+                            }
+                        }.start();
 
                         mSignInProgress.setVisibility(View.GONE);
                         mSignInButton.setVisibility(View.VISIBLE);
@@ -166,12 +207,21 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         } else {
 
-            //Toast.makeText(AuthenticationActivity.this, "Please enter your email and password.", Toast.LENGTH_SHORT).show();
-
-            mNotificationView.setVisibility(View.VISIBLE);
-
             mSignInProgress.setVisibility(View.GONE);
             mSignInButton.setVisibility(View.VISIBLE);
+
+            new CountDownTimer(3000, 1000){
+                public void onTick(long millisUntilFinished){
+                    mNotificationView.setVisibility(View.VISIBLE);
+                    mNotificationText.setVisibility(View.VISIBLE);
+                    mNotificationText.setText("Your information are invalid.");
+                }
+                public  void onFinish(){
+                    mNotificationView.setVisibility(View.GONE);
+                    mNotificationText.setVisibility(View.GONE);
+                    mNotificationText.setText("");
+                }
+            }.start();
 
         }
 
@@ -179,13 +229,9 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     public void signUp(View view) {
 
-        mEmailView = (EditText) findViewById(R.id.email_signup);
-        mPasswordView = (EditText) findViewById(R.id.password_signup);
-
-        mNameView = (EditText) findViewById(R.id.name_signup);
-        nPhoneView = (EditText) findViewById(R.id.phone_signup);
-
+        NAME = mNameView.getText().toString();
         EMAIL = mEmailView.getText().toString();
+        PHONE = Integer.valueOf(mPhoneView.getText().toString());
         PASSWORD = mPasswordView.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
@@ -194,13 +240,23 @@ public class AuthenticationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Log.d("info", "createUserWithEmail:success");
+                            mDatabase = FirebaseFirestore.getInstance();
+
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            String uid = user.getUid();
+
+
+
+
+
                         } else {
+
                             // If sign in fails, display a message to the user.
                             Log.w("info", "createUserWithEmail:failure", task.getException());
                             //Toast.makeText(context.t, "Authentication failed.", Toast.LENGTH_SHORT).show();
+
+
 
                         }
 

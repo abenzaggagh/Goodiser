@@ -5,8 +5,8 @@
     <color name="primaryLightColor">#ffebdd</color>
     <color name="primaryDarkColor">#c8887c</color>
 
-    <color name="secondaryColor">#ffdbcf</color>
-    <color name="secondaryLightColor">#ffffff</color>
+    <color name="secondaryColor">#5FF1DFD8</color>
+    <color name="secondaryLightColor">#FFFFFF</color>
     <color name="secondaryDarkColor">#cba99e</color>
 
     <color name="primaryTextColor">#442b2d</color>
