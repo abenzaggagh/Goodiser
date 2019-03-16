@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -16,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.goodiser.android.app.FeedActivity;
 import com.goodiser.android.R;
+import com.goodiser.modal.Database;
+import com.goodiser.modal.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -63,7 +63,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     // User Data
     protected String NAME = null;
     protected String EMAIL = null;
-    protected Integer PHONE = null;
+    protected String PHONE = null;
     protected String PASSWORD = null;
 
 
@@ -78,9 +78,12 @@ public class AuthenticationActivity extends AppCompatActivity {
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
         mSignInButton = (Button) findViewById(R.id.sign_in_button);
 
+        mEmailView = (EditText) findViewById(R.id.email);
+        mPasswordView = (EditText) findViewById(R.id.password);
 
         mNotificationView = (ImageView) findViewById(R.id.notification_view);
         mNotificationText = (TextView) findViewById(R.id.notification_text);
+
 
 
         mSignInView = (ScrollView) findViewById(R.id.signin_form);
@@ -115,6 +118,8 @@ public class AuthenticationActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void toSignUp() {
 
@@ -231,7 +236,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         NAME = mNameView.getText().toString();
         EMAIL = mEmailView.getText().toString();
-        PHONE = Integer.valueOf(mPhoneView.getText().toString());
+        PHONE = mPhoneView.getText().toString();
         PASSWORD = mPasswordView.getText().toString();
 
         mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
@@ -240,21 +245,24 @@ public class AuthenticationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            mDatabase = FirebaseFirestore.getInstance();
+                            FirebaseUser mUser = mAuth.getCurrentUser();
 
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            String UID = mUser.getUid();
 
-                            String uid = user.getUid();
+                            User user = new User();
 
+                            user.setUID(UID);
+                            user.setName(NAME);
+                            user.setEmail(EMAIL);
+                            user.setPhone(PHONE);
 
+                            Database.insertUser(user);
 
-
+                            startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
 
                         } else {
 
-                            // If sign in fails, display a message to the user.
-                            Log.w("info", "createUserWithEmail:failure", task.getException());
-                            //Toast.makeText(context.t, "Authentication failed.", Toast.LENGTH_SHORT).show();
+
 
 
 

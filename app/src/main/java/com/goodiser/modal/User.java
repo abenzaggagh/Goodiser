@@ -5,7 +5,7 @@ public class User {
     private String UID;
     private String name;
     private String email;
-    private Integer phone;
+    private String phone;
 
     public User() {
         this.UID = "EMPTY";
@@ -14,11 +14,15 @@ public class User {
         this.phone = null;
     }
 
-    public User(String UID, String name, String email, Integer phone) {
+    public User(String UID, String name, String email, String phone) {
         this.UID = UID;
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getUID() {
+        return this.UID;
     }
 
     public String getName() {
@@ -29,10 +33,25 @@ public class User {
         return this.email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return this.phone;
     }
 
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 
 }
