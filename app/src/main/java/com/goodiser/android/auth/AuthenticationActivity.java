@@ -44,8 +44,8 @@ public class AuthenticationActivity extends AppCompatActivity {
     private ProgressBar mSignInProgress = null;
     private ImageView mNotificationView = null;
 
-    private Button mToSignUp = null;
-    private Button mToSignIn = null;
+    private Button mToSignUp;
+    private Button mToSignIn;
 
     // User Data
     protected String EMAIL = null;
@@ -63,6 +63,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         nPhoneView = (EditText) findViewById(R.id.phone_signup);
 
         mSignInButton = (Button) findViewById(R.id.sign_in_button);
+
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
         mNotificationView = (ImageView) findViewById(R.id.notification_view);
 
@@ -113,7 +114,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         return !email.isEmpty() && email.contains("@");
     }
     private boolean isPasswordValid(String password) {
-        return !password.isEmpty() && password.length() > 8;
+        return !password.isEmpty() && password.length() > 6;
     }
 
     public static void hideSoftKeyboard(Activity activity) {
