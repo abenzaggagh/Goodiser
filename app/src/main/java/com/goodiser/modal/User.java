@@ -8,7 +8,7 @@ public class User {
     private String phone;
 
     public User() {
-        this.UID = "EMPTY";
+        this.UID = "";
         this.name = null;
         this.email = null;
         this.phone = null;

@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,6 +22,11 @@ import com.goodiser.android.app.FeedActivity;
 import com.goodiser.android.R;
 import com.goodiser.modal.Database;
 import com.goodiser.modal.User;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,7 +40,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private FirebaseFirestore mDatabase = null;
 
     // UI Forms
-    private ScrollView mSignInView = null;
+    private ConstraintLayout mSignInView = null;
     private ScrollView mSignUpView = null;
 
     /**
@@ -56,6 +63,9 @@ public class AuthenticationActivity extends AppCompatActivity {
     private ImageView mNotificationView = null;
     private TextView mNotificationText = null;
 
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient mGoogleSignInClient;
+
     // Changing Layout Buttons
     private Button mToSignUp;
     private Button mToSignIn;
@@ -73,6 +83,9 @@ public class AuthenticationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         mAuth = FirebaseAuth.getInstance();
 
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
@@ -84,13 +97,11 @@ public class AuthenticationActivity extends AppCompatActivity {
         mNotificationView = (ImageView) findViewById(R.id.notification_view);
         mNotificationText = (TextView) findViewById(R.id.notification_text);
 
-
-
-        mSignInView = (ScrollView) findViewById(R.id.signin_form);
-        mSignUpView = (ScrollView) findViewById(R.id.signup_form);
+        mSignInView = (ConstraintLayout) findViewById(R.id.signin_form);
+        // mSignUpView = (ScrollView) findViewById(R.id.signup_form);
 
         mToSignUp = (Button) findViewById(R.id.to_sign_up);
-        mToSignIn = (Button) findViewById(R.id.to_sign_in);
+        // mToSignIn = (Button) findViewById(R.id.to_sign_in);
 
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
@@ -103,12 +114,12 @@ public class AuthenticationActivity extends AppCompatActivity {
             }
         });
 
-        mToSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toSignIn();
-            }
-        });
+        //mToSignIn.setOnClickListener(new View.OnClickListener() {
+        //   @Override
+        //  public void onClick(View v) {
+            //      toSignIn();
+            //    }
+        //});
 
     }
 
@@ -123,13 +134,13 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     public void toSignUp() {
 
-        mNameView = (EditText) findViewById(R.id.name_signup);
-        mEmailView = (EditText) findViewById(R.id.email_signup);
-        mPhoneView = (EditText) findViewById(R.id.phone_signup);
-        mPasswordView = (EditText) findViewById(R.id.password_signup);
+        //mNameView = (EditText) findViewById(R.id.name_signup);
+        //mEmailView = (EditText) findViewById(R.id.email_signup);
+        //mPhoneView = (EditText) findViewById(R.id.phone_signup);
+        //mPasswordView = (EditText) findViewById(R.id.password_signup);
 
-        mSignInView.setVisibility(View.GONE);
-        mSignUpView.setVisibility(View.VISIBLE);
+        //mSignInView.setVisibility(View.GONE);
+        //mSignUpView.setVisibility(View.VISIBLE);
     }
 
     public void toSignIn() {
@@ -231,6 +242,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     public void signUp(View view) {
 

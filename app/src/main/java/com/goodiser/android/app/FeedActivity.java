@@ -46,12 +46,7 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }*/
+
     }
 
     @Override
@@ -76,18 +71,19 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_cart) {
+
+        } else if (id == R.id.nav_wish_list) {
 
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_sign_out) {
 
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(FeedActivity.this, AuthenticationActivity.class));

@@ -13,23 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".app.ProductActivity"></activity>
         <activity
             android:name=".app.FeedActivity"
             android:label="@string/title_activity_feed"
-            android:theme="@style/Feed">
-
-        </activity>
-
+            android:theme="@style/Feed"></activity>
         <activity
             android:name=".auth.AuthenticationActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

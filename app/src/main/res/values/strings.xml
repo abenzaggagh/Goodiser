@@ -30,6 +30,9 @@
     <string name="name">Name</string>
     <string name="sign_up">SIGN UP</string>
     <string name="notification_error_1">Your information are invalid.</string>
+    <string name="google_login_button">Google Login Button</string>
+    <string name="facebook_login_button">Facebook Login Button</string>
+    <string name="sign_in">SIGN IN</string>
 
 
 </resources>

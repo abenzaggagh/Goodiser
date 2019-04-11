@@ -5,17 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Men" />
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_cart"
+            android:title="Cart" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Women" />
+            android:id="@+id/nav_wish_list"
+            android:icon="@drawable/ic_wish_list"
+            android:title="Wish List" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
@@ -26,8 +26,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_send"
-            android:icon="@drawable/ic_menu_send"
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_sign_out"
             android:title="Sign Out" />
     </group>
 
