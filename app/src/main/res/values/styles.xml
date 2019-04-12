@@ -5,7 +5,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryDark">@color/primaryColor</item>
-        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorAccent">@color/accentColor</item>
     </style>
 
     <!-- Authentification Theme -->
@@ -62,11 +62,33 @@
         <item name="android:layout_margin">@dimen/button_margin</item>
 
         <item name="android:text">@string/sign_in</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/heading_6</item>
         <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:fontFamily">@font/heebo_light</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:letterSpacing">0.10</item>
 
         <item name="android:background">@drawable/sign_in_button</item>
 
+    </style>
+
+
+    <style name="Goodiser.Button.Facebook" parent="Widget.AppCompat.Button">
+
+
+        <!-- <item name="android:"></item> -->
+        <item name="android:layout_width">@dimen/button</item>
+        <item name="android:layout_height">@dimen/button</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+
+        <item name="android:text">@string/sign_in</item>
+        <item name="android:textSize">@dimen/heading_6</item>
+
+        <item name="android:textColor">@color/primaryTextColor</item>
+
+        <item name="android:background">@drawable/facebook_button</item>
 
     </style>
 
@@ -82,7 +104,15 @@
 
 
 
+    <style name="Goodiser.EditText" parent="Widget.AppCompat.EditText">
 
+        <item name="android:layout_width">@dimen/edit_text_width</item>
+        <item name="android:layout_height">@dimen/edit_text_height</item>
+
+        <item name="android:textColorHint">@color/primaryTextColor</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
 
 
 

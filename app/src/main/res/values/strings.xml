@@ -36,4 +36,9 @@
     <string name="sign_in">SIGN IN</string>
 
 
+    <!-- Facebook -->
+    <string name="facebook_app_id">621074101666498</string>
+    <string name="fb_login_protocol_scheme">fb621074101666498</string>
+
+
 </resources>

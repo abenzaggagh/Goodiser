@@ -22,17 +22,15 @@ import com.goodiser.android.app.FeedActivity;
 import com.goodiser.android.R;
 import com.goodiser.modal.Database;
 import com.goodiser.modal.User;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class AuthenticationActivity extends AppCompatActivity {
 
@@ -63,8 +61,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     private ImageView mNotificationView = null;
     private TextView mNotificationText = null;
 
-    private GoogleSignInOptions gso;
-    private GoogleSignInClient mGoogleSignInClient;
 
     // Changing Layout Buttons
     private Button mToSignUp;
@@ -83,13 +79,13 @@ public class AuthenticationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
         mAuth = FirebaseAuth.getInstance();
 
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
-        mSignInButton = (Button) findViewById(R.id.button);
+        mSignInButton = (Button) findViewById(R.id.sign_in_button);
 
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
