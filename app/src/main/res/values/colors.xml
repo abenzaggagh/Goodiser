@@ -4,7 +4,7 @@
     <!-- Primary Color -->
     <color name="primaryColor">#fcb8ab</color>
     <color name="primaryLightColor">#ffc5ba</color>
-    <color name="primaryDarkColor">#c8887c</color>
+    <color name="primaryDarkColor">#C8887C</color>
 
     <!-- Secondary Color -->
     <color name="secondaryColor">#FFC5BA</color>

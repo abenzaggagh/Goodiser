@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Goodiser</string>
+
     <string name="title_activity_login">Sign in</string>
 
 
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -20,21 +21,25 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+
+
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="notification">Notification View</string>
     <string name="forgot_password">Forgot Your Password?</string>
     <string name="phone_number">Phone Number</string>
     <string name="name">Name</string>
-    <string name="sign_up">SIGN UP</string>
+
     <string name="notification_error_1">Your information are invalid.</string>
+
     <string name="google_login_button">Google Login Button</string>
     <string name="facebook_login_button">Facebook Login Button</string>
 
-    <string name="sign_in">SIGN IN</string>
 
+    <string name="sign_up_text">Don\'t Have An Account?</string>
+
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
 
     <!-- Facebook -->
     <string name="facebook_app_id">621074101666498</string>

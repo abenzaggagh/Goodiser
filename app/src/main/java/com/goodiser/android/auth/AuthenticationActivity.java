@@ -37,17 +37,10 @@ public class AuthenticationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = null;
     private FirebaseFirestore mDatabase = null;
 
-    // UI Forms
-    private ConstraintLayout mSignInView = null;
-    private ScrollView mSignUpView = null;
 
-    /**
-     * UI Elements
-     *
-     * Email TextField
-     * Password TextField
-     *
-     */
+    private ConstraintLayout mSignInView = null;
+    private ConstraintLayout mSignUpView = null;
+
     private EditText mEmailView = null;
     private EditText mPasswordView = null;
 
@@ -55,14 +48,14 @@ public class AuthenticationActivity extends AppCompatActivity {
     private EditText mPhoneView = null;
 
     private Button mSignInButton = null;
-    private ProgressBar mSignInProgress = null;
+    // private ProgressBar mSignInProgress = null;
 
-    // UI Notifications
+
     private ImageView mNotificationView = null;
     private TextView mNotificationText = null;
 
 
-    // Changing Layout Buttons
+
     private Button mToSignUp;
     private Button mToSignIn;
 
@@ -84,38 +77,33 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
-        mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        mSignInView = (ConstraintLayout) findViewById(R.id.sign_in_layout);
+        mSignUpView = (ConstraintLayout) findViewById(R.id.sign_up_layout);
 
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
-
-        mNotificationView = (ImageView) findViewById(R.id.notification_view);
-        mNotificationText = (TextView) findViewById(R.id.notification_text);
-
-        mSignInView = (ConstraintLayout) findViewById(R.id.signin_form);
-        // mSignUpView = (ScrollView) findViewById(R.id.signup_form);
-
-        mToSignUp = (Button) findViewById(R.id.to_sign_up);
-        // mToSignIn = (Button) findViewById(R.id.to_sign_in);
 
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
         }
 
-        mToSignUp.setOnClickListener(new View.OnClickListener() {
+        mSignInButton = (Button) findViewById(R.id.sign_in_button);
+
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSignUp();
+                signIn(v);
             }
         });
 
-        //mToSignIn.setOnClickListener(new View.OnClickListener() {
-        //   @Override
-        //  public void onClick(View v) {
-            //      toSignIn();
-            //    }
-        //});
+        /*
+        mToSignIn.setOnClickListener(new View.OnClickListener() {
+           @Override
+          public void onClick(View v) {
+                  toSignIn();
+                }
+        });
+        */
 
     }
 
@@ -123,11 +111,10 @@ public class AuthenticationActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-
     }
 
 
-
+    /*
     public void toSignUp() {
 
         //mNameView = (EditText) findViewById(R.id.name_signup);
@@ -145,11 +132,14 @@ public class AuthenticationActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
 
         mSignInView.setVisibility(View.VISIBLE);
-        mSignUpView.setVisibility(View.GONE);
+        // mSignUpView.setVisibility(View.GONE);
 
     }
 
+    */
+
     private boolean isEmailValid(String email) {
+
         return !email.isEmpty() && email.contains("@");
     }
     private boolean isPasswordValid(String password) {
@@ -162,20 +152,14 @@ public class AuthenticationActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    /**
-     * Authentication Methods
-     *
-     * Sign In
-     * Sign Up
-     *
-     */
+
 
     public void signIn(View view) {
 
         EMAIL = mEmailView.getText().toString();
         PASSWORD = mPasswordView.getText().toString();
 
-        mSignInProgress.setVisibility(View.VISIBLE);
+        // mSignInProgress.setVisibility(View.VISIBLE);
         mSignInButton.setVisibility(View.GONE);
 
 
@@ -209,7 +193,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                             }
                         }.start();
 
-                        mSignInProgress.setVisibility(View.GONE);
+                        // mSignInProgress.setVisibility(View.GONE);
                         mSignInButton.setVisibility(View.VISIBLE);
 
                     }
@@ -219,7 +203,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         } else {
 
-            mSignInProgress.setVisibility(View.GONE);
+            // mSignInProgress.setVisibility(View.GONE);
             mSignInButton.setVisibility(View.VISIBLE);
 
             new CountDownTimer(3000, 1000){
@@ -238,8 +222,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
 
     }
-
-
 
     public void signUp(View view) {
 
@@ -281,12 +263,6 @@ public class AuthenticationActivity extends AppCompatActivity {
                 });
 
     }
-
-
-
-
-
-
 
 
 

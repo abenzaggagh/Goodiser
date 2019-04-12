@@ -6,14 +6,16 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="loading_spacing">32dp</dimen>
 
+    <dimen name="text_one_line">45dp</dimen>
+    <dimen name="text_margin_spacing">8dp</dimen>
 
+    <dimen name="text_input_width">320dp</dimen>
+    <dimen name="text_input_height">65dp</dimen>
+    <dimen name="text_input_margin_top">32dp</dimen>
 
-
-    <dimen name="edit_text_width">300dp</dimen>
+    <dimen name="edit_text_width">320dp</dimen>
     <dimen name="edit_text_height">60dp</dimen>
     <dimen name="edit_text_margin">24dp</dimen>
-
-
 
 
     <dimen name="button">70dp</dimen>

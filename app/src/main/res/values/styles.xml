@@ -44,6 +44,34 @@
     </style>
 
 
+
+    <style name="Goodiser">
+
+    </style>
+
+    <style name="Goodiser.Text">
+        <item name="android:fontFamily">@font/heebo_regular</item>
+    </style>
+
+    <style name="Goodiser.Text.Active">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Goodiser.Text.Inactive">
+
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="Goodiser.Text.Inactive.SIGN_UP_TEXT">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/sign_up_text</item>
+        <item name="android:textSize">@dimen/heading_6</item>
+    </style>
+
+
+
+
     <!-- Goodiser Button Style -->
 
     <style name="Goodiser.Button" parent="Widget.AppCompat.Button">
@@ -55,10 +83,11 @@
 
     </style>
 
-    <style name="Goodiser.Button.SignIn" parent="Widget.AppCompat.Button">
+    <style name="Goodiser.Button.SIGN_IN_BUTTON">
 
         <item name="android:layout_width">@dimen/button_width</item>
         <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">@dimen/button_margin</item>
 
         <item name="android:text">@string/sign_in</item>
@@ -75,10 +104,9 @@
     </style>
 
 
-    <style name="Goodiser.Button.Facebook" parent="Widget.AppCompat.Button">
 
+    <style name="Goodiser.Button.Facebook">
 
-        <!-- <item name="android:"></item> -->
         <item name="android:layout_width">@dimen/button</item>
         <item name="android:layout_height">@dimen/button</item>
         <item name="android:layout_margin">@dimen/button_margin</item>
@@ -95,25 +123,46 @@
 
 
 
-
     <style name="Goodiser.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
-
         <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Goodiser.Button.Borderless.TO_SIGN_UP">
+        <item name="android:text">@string/sign_up</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/heading_6</item>
+        <item name="android:fontFamily">@font/heebo_bold</item>
     </style>
 
 
 
 
     <style name="Goodiser.EditText" parent="Widget.AppCompat.EditText">
-
-        <item name="android:layout_width">@dimen/edit_text_width</item>
-        <item name="android:layout_height">@dimen/edit_text_height</item>
-
-        <item name="android:textColorHint">@color/primaryTextColor</item>
+        <item name="android:layout_width">@dimen/text_input_width</item>
+        <item name="android:layout_height">@dimen/text_input_height</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:layout_marginTop">@dimen/text_input_margin_top</item>
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:textColorHint">@color/primaryDarkColor</item>
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
     </style>
-
+    <style name="Goodiser.EditText.Email" parent="Goodiser.EditText">
+        <item name="android:layout_width">@dimen/edit_text_width</item>
+        <item name="android:hint">@string/email</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:labelFor">@string/email</item>
+        <item name="android:contentDescription">@string/email</item>
+    </style>
+    <style name="Goodiser.EditText.Password" parent="Goodiser.EditText">
+        <item name="android:layout_width">@dimen/edit_text_width</item>
+        <item name="android:hint">@string/password</item>
+        <item name="android:labelFor">@string/password</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:contentDescription">@string/password</item>
+    </style>
 
 
 
