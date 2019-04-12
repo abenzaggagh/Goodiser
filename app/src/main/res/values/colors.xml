@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Primary Color -->
     <color name="primaryColor">#fcb8ab</color>
     <color name="primaryLightColor">#ffc5ba</color>
     <color name="primaryDarkColor">#c8887c</color>
@@ -16,5 +17,9 @@
     <color name="secondaryTextColor">#84565e</color>
 
     <color name="errorColor">#CF0000</color>
+
+
+
+    <color name="backgroundButtonColor">#FFDBCF</color>
 
 </resources>

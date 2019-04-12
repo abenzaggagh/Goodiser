@@ -31,7 +31,7 @@
 
     <!-- Feed Style -->
 
-    <!-- TODO: Changing the code to fit the proposed design. -->
+
     <style name="Feed" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -40,20 +40,53 @@
 
     <style name="Toolbar">
         <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:background">@color/primaryColor</item>
     </style>
 
 
     <!-- Goodiser Button Style -->
+
     <style name="Goodiser.Button" parent="Widget.AppCompat.Button">
+
+        <item name="android:textSize">@dimen/heading_6</item>
+
         <item name="android:background">@color/secondaryColor</item>
-        <item name="android:bottomRightRadius">16dp</item>
-        <item name="android:bottomLeftRadius">16dp</item>
         <item name="android:textColor">@color/primaryTextColor</item>
+
     </style>
+
+    <style name="Goodiser.Button.SignIn" parent="Widget.AppCompat.Button">
+
+        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+
+        <item name="android:text">@string/sign_in</item>
+        <item name="android:textSize">@dimen/heading_6</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+
+        <item name="android:background">@drawable/sign_in_button</item>
+
+
+    </style>
+
+
+
+
 
     <style name="Goodiser.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
 
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
+
+
+
+
+
+
+
+
+
+
 
 </resources>

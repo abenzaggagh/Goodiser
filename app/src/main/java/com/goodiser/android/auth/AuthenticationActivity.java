@@ -89,7 +89,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mSignInProgress = (ProgressBar) findViewById(R.id.signin_progress);
-        mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        mSignInButton = (Button) findViewById(R.id.button);
 
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
