@@ -8,4 +8,15 @@
     tools:context=".app.FeedActivity"
     tools:showIn="@layout/app_bar_feed">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/product_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </android.support.v7.widget.RecyclerView>
+
 </android.support.constraint.ConstraintLayout>

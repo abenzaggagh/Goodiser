@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/nav_menu"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -16,19 +19,21 @@
             android:id="@+id/nav_wish_list"
             android:icon="@drawable/ic_wish_list"
             android:title="Wish List" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Kids" />
-
-
     </group>
 
-    <group android:checkableBehavior="single">
+
+    <group
+        android:id="@+id/sign_out_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_sign_out"
             android:title="Sign Out" />
     </group>
+
 
 </menu>
