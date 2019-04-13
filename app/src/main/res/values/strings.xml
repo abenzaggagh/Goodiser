@@ -3,7 +3,8 @@
 
     <string name="title_activity_login">Sign in</string>
 
-
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
 
@@ -25,18 +26,23 @@
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="notification">Notification View</string>
-    <string name="forgot_password">Forgot Your Password?</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="name">Name</string>
 
-    <string name="notification_error_1">Your information are invalid.</string>
+
+    <string name="notification">Incorrect Email or Password</string>
+
+    <string name="forgot_password">Forgot Your Password?</string>
+    <string name="forgot_password_msg">Don\'t worry. Just enter your email address below and we\'ll send you some instructions.</string>
+    <string name="rest_password">Rest Password</string>
+
+    <string name="back">Back</string>
+
 
     <string name="google_login_button">Google Login Button</string>
     <string name="facebook_login_button">Facebook Login Button</string>
 
 
-    <string name="sign_up_text">Don\'t Have An Account?</string>
+    <string name="sign_in_text">Already have an account?</string>
+    <string name="sign_up_text">Don\'t have an account?</string>
 
     <string name="sign_in">SIGN IN</string>
     <string name="sign_up">SIGN UP</string>

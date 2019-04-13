@@ -10,21 +10,26 @@
     <dimen name="text_margin_spacing">8dp</dimen>
 
     <dimen name="text_input_width">320dp</dimen>
-    <dimen name="text_input_height">65dp</dimen>
-    <dimen name="text_input_margin_top">32dp</dimen>
+    <dimen name="text_input_height">75dp</dimen>
+    <dimen name="text_input_margin_top">8dp</dimen>
+    <dimen name="text_input_margin_bottom">8dp</dimen>
 
     <dimen name="edit_text_width">320dp</dimen>
     <dimen name="edit_text_height">60dp</dimen>
-    <dimen name="edit_text_margin">24dp</dimen>
+    <dimen name="edit_text_margin">8dp</dimen>
 
+    <dimen name="elevation">8dp</dimen>
 
-    <dimen name="button">70dp</dimen>
+    <dimen name="circle_button">70dp</dimen>
     <dimen name="circle">999dp</dimen>
 
     <dimen name="button_width">320dp</dimen>
     <dimen name="button_height">42dp</dimen>
     <dimen name="button_margin">8dp</dimen>
     <dimen name="button_radius">10dp</dimen>
+
+    <dimen name="drawable_ic">18dp</dimen>
+
 
     <!-- Text Size -->
 
@@ -34,6 +39,18 @@
     <dimen name="heading_4">34sp</dimen>
     <dimen name="heading_5">24sp</dimen>
     <dimen name="heading_6">20sp</dimen>
+
+    <dimen name="subtitle_1">16sp</dimen>
+    <dimen name="subtitle_2">14sp</dimen>
+
+    <dimen name="body_1">16sp</dimen>
+    <dimen name="body_2">14sp</dimen>
+
+    <dimen name="button">14sp</dimen>
+
+    <dimen name="caption">12sp</dimen>
+
+    <dimen name="overline">10sp</dimen>
 
 
 </resources>

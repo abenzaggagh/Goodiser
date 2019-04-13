@@ -6,17 +6,15 @@
         <item name="colorPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryDark">@color/primaryColor</item>
         <item name="colorAccent">@color/accentColor</item>
+        <item name="android:fontFamily">@font/heebo_regular</item>
+        <item name="android:textColorHint">@color/accentTextColor</item>
     </style>
 
-    <!-- Authentification Theme -->
-
-    <style name="SignInTheme" parent="AppTheme">
-
+    <style name="AppTheme.ProgressBar">
+        <item name="colorAccent">@color/primaryColor</item> <!-- Whatever color you want-->
     </style>
 
-    <style name="SignUpTheme" parent="AppTheme">
 
-    </style>
 
 
     <style name="SignInTheme.AppBarOverlay" parent="AppTheme">
@@ -26,6 +24,8 @@
     <style name="SignInTheme.PopupOverlay" parent="AppTheme">
 
     </style>
+
+
 
 
 
@@ -45,6 +45,7 @@
 
 
 
+
     <style name="Goodiser">
 
     </style>
@@ -58,14 +59,12 @@
     </style>
 
     <style name="Goodiser.Text.Inactive">
-
         <item name="android:textColor">@color/secondaryTextColor</item>
     </style>
 
-    <style name="Goodiser.Text.Inactive.SIGN_UP_TEXT">
+    <style name="Goodiser.Text.Inactive.Authentication">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">@string/sign_up_text</item>
         <item name="android:textSize">@dimen/heading_6</item>
     </style>
 
@@ -75,21 +74,17 @@
     <!-- Goodiser Button Style -->
 
     <style name="Goodiser.Button" parent="Widget.AppCompat.Button">
-
         <item name="android:textSize">@dimen/heading_6</item>
-
         <item name="android:background">@color/secondaryColor</item>
         <item name="android:textColor">@color/primaryTextColor</item>
-
     </style>
 
     <style name="Goodiser.Button.SIGN_IN_BUTTON">
-
         <item name="android:layout_width">@dimen/button_width</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">@dimen/button_margin</item>
-
+        <item name="android:elevation">@dimen/elevation</item>
         <item name="android:text">@string/sign_in</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">@dimen/heading_6</item>
@@ -98,37 +93,39 @@
         <item name="android:fontFamily">@font/heebo_light</item>
         <item name="android:typeface">sans</item>
         <item name="android:letterSpacing">0.10</item>
-
         <item name="android:background">@drawable/sign_in_button</item>
-
     </style>
 
-
+    <style name="Goodiser.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:colorAccent">@color/primaryColor</item>
+        <item name="android:theme">@style/AppTheme.ProgressBar</item>
+    </style>
 
     <style name="Goodiser.Button.Facebook">
-
-        <item name="android:layout_width">@dimen/button</item>
-        <item name="android:layout_height">@dimen/button</item>
-        <item name="android:layout_margin">@dimen/button_margin</item>
-
+        <item name="android:layout_width">@dimen/circle_button</item>
+        <item name="android:layout_height">@dimen/circle_button</item>
         <item name="android:text">@string/sign_in</item>
         <item name="android:textSize">@dimen/heading_6</item>
-
         <item name="android:textColor">@color/primaryTextColor</item>
-
         <item name="android:background">@drawable/facebook_button</item>
-
     </style>
-
-
-
 
     <style name="Goodiser.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
-    <style name="Goodiser.Button.Borderless.TO_SIGN_UP">
-        <item name="android:text">@string/sign_up</item>
+    <style name="Goodiser.Button.Borderless.FORGET_PASSWORD" parent="Goodiser.Button.Borderless">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">@dimen/button</item>
+        <item name="android:text">@string/forgot_password</item>
+        <item name="android:fontFamily">@font/heebo_light</item>
+    </style>
+
+    <style name="Goodiser.Button.Borderless.Authentication">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -136,36 +133,42 @@
         <item name="android:fontFamily">@font/heebo_bold</item>
     </style>
 
-
-
-
     <style name="Goodiser.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_marginTop">@dimen/edit_text_margin</item>
+        <item name="android:layout_marginBottom">@dimen/edit_text_margin</item>
         <item name="android:layout_width">@dimen/text_input_width</item>
         <item name="android:layout_height">@dimen/text_input_height</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:layout_marginTop">@dimen/text_input_margin_top</item>
         <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:drawablePadding">@dimen/drawable_ic</item>
+        <item name="android:textSize">@dimen/body_1</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
         <item name="android:textColorHint">@color/primaryDarkColor</item>
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
     </style>
+    <style name="Goodiser.EditText.SIGN_UP" parent="Goodiser.EditText">
+        <item name="android:layout_width">@dimen/edit_text_width</item>
+        <item name="android:labelFor">@string/email</item>
+        <item name="android:textSize">@dimen/body_2</item>
+        <item name="android:contentDescription">@string/email</item>
+    </style>
     <style name="Goodiser.EditText.Email" parent="Goodiser.EditText">
         <item name="android:layout_width">@dimen/edit_text_width</item>
         <item name="android:hint">@string/email</item>
+        <item name="android:textSize">@dimen/body_2</item>
         <item name="android:inputType">textEmailAddress</item>
         <item name="android:labelFor">@string/email</item>
+        <item name="android:drawableLeft">@drawable/ic_email</item>
         <item name="android:contentDescription">@string/email</item>
     </style>
     <style name="Goodiser.EditText.Password" parent="Goodiser.EditText">
         <item name="android:layout_width">@dimen/edit_text_width</item>
         <item name="android:hint">@string/password</item>
+        <item name="android:textSize">@dimen/body_2</item>
         <item name="android:labelFor">@string/password</item>
         <item name="android:inputType">textPassword</item>
+        <item name="android:drawableLeft">@drawable/ic_password</item>
         <item name="android:contentDescription">@string/password</item>
     </style>
-
-
-
-
 
 </resources>

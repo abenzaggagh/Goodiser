@@ -2,24 +2,30 @@
 <resources>
 
     <!-- Primary Color -->
-    <color name="primaryColor">#fcb8ab</color>
-    <color name="primaryLightColor">#ffc5ba</color>
+    <color name="primaryColor">#FCB8AB</color>
+    <color name="primaryLightColor">#FFC5BA</color>
     <color name="primaryDarkColor">#C8887C</color>
 
     <!-- Secondary Color -->
     <color name="secondaryColor">#FFC5BA</color>
-    <color name="secondaryLightColor">#FFFFFF</color>
+    <color name="secondaryLightColor">#A8FFCBC1</color>
     <color name="secondaryDarkColor">#80442B2D</color>
 
     <!-- Accent Color -->
     <color name="accentColor">#C29891</color>
+    <color name="accentTextColor">#77625E</color>
 
     <!-- Text Color -->
     <color name="primaryTextColor">#794848</color>
     <color name="secondaryTextColor">#83423334</color>
 
-    <color name="errorColor">#CF0000</color>
+    <color name="errorColor">#B3CF0000</color>
 
+    <color name="white">#FFC5BA</color>
+
+    <color name="backgroundColor">#FFFBFA</color>
     <color name="backgroundButtonColor">#FFDBCF</color>
+
+
 
 </resources>
