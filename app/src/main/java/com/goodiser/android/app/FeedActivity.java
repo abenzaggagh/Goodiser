@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer = null;
     NavigationView navigationView = null;
     ConstraintLayout home;
+    TabLayout tabLayout;
 
     private TextView mUsername = null;
 
@@ -67,8 +69,7 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         home = (ConstraintLayout) findViewById(R.id.home_content);
-
-
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // mUsername.setText("Amine BEN ZAGGAGH");
 
@@ -107,26 +108,32 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
 
             home.setVisibility(View.VISIBLE);
+            tabLayout.setVisibility(View.VISIBLE);
 
         } else if (id == R.id.nav_notification) {
 
             home.setVisibility(View.GONE);
+            tabLayout.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_cart) {
 
             home.setVisibility(View.GONE);
+            tabLayout.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_wish_list) {
 
             home.setVisibility(View.GONE);
+            tabLayout.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_history) {
 
             home.setVisibility(View.GONE);
+            tabLayout.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_manage) {
 
             home.setVisibility(View.GONE);
+            tabLayout.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_sign_out) {
 

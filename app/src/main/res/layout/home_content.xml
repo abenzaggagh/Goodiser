@@ -12,8 +12,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/top_product_recycler"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="175dp"
         android:orientation="vertical"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,16 +22,17 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <ImageView
-        android:id="@+id/dsv"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="8dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/product_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_product_recycler"
-        app:srcCompat="@color/accentTextColor" />
+        app:layout_constraintTop_toBottomOf="@+id/top_product_recycler" />
 
 </android.support.constraint.ConstraintLayout>

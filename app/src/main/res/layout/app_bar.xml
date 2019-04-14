@@ -15,10 +15,11 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             app:popupTheme="@style/SignInTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:tabMode="fixed">
@@ -28,21 +29,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_apple"
-                android:text="Apple" />
+                android:text="@string/apple" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/samsung_tab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_samsung_"
-                android:text="Samsung" />
+                android:text="@string/samsung" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/microsoft_tab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/ic_microsoft"
-                android:text="Microsoft" />
+                android:text="@string/microsoft" />
         </android.support.design.widget.TabLayout>
 
 

@@ -61,6 +61,10 @@
 
     <string name="facebook_app_id">621074101666498</string>
     <string name="fb_login_protocol_scheme">fb621074101666498</string>
+    <string name="apple">Apple</string>
+    <string name="samsung">Samsung</string>
+    <string name="microsoft">Microsoft</string>
+    <string name="product_image">Product Image</string>
 
 
 </resources>
