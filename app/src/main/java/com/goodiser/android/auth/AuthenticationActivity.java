@@ -97,6 +97,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
+            finish();
         }
 
         mSignInView = (ConstraintLayout) findViewById(R.id.sign_in_layout);
@@ -216,6 +217,15 @@ public class AuthenticationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
+        if (mSignUpView.getVisibility() == View.VISIBLE && (mSignUpProgress.getVisibility() == View.GONE || mSignInProgress.getVisibility() == View.GONE)) {
+            toSignIn();
+        } else if (mSignInView.getVisibility() == View.VISIBLE && (mSignUpProgress.getVisibility() == View.GONE || mSignInProgress.getVisibility() == View.GONE)) {
+            toSignUp();
+        } else if (mForgetView.getVisibility() == View.VISIBLE && (mSignUpProgress.getVisibility() == View.GONE || mSignInProgress.getVisibility() == View.GONE)) {
+            mForgetView.setVisibility(View.GONE);
+            mSignInView.setVisibility(View.VISIBLE);
+        }
+
     }
 
     public void toSignUp() {
@@ -308,6 +318,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(AuthenticationActivity.this, FeedActivity.class);
                         startActivity(intent);
+                        finish();
 
                     } else {
 
@@ -438,6 +449,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(AuthenticationActivity.this, FeedActivity.class);
                             startActivity(intent);
+                            finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -448,7 +460,6 @@ public class AuthenticationActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 
 }

@@ -2,8 +2,11 @@ package com.goodiser.android.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,34 +16,61 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.goodiser.android.R;
 import com.goodiser.android.auth.AuthenticationActivity;
+import com.goodiser.modal.Database;
+import com.goodiser.modal.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class FeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    // UI Elements
+//    RecyclerView topProductRecycler = (RecyclerView) findViewById(R.id.top_product_recycler);
+
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+
+    Toolbar toolbar = null;
+    DrawerLayout drawer = null;
+    NavigationView navigationView = null;
+    ConstraintLayout home;
+
+    private TextView mUsername = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        mUsername = (TextView) findViewById(R.id.name);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         toolbar.setTitle("Goodiser");
 
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(0).setChecked(true);
-
         navigationView.setNavigationItemSelectedListener(this);
+
+        home = (ConstraintLayout) findViewById(R.id.home_content);
+
+
+
+        // mUsername.setText("Amine BEN ZAGGAGH");
 
     }
 
@@ -76,22 +106,44 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_home) {
 
+            home.setVisibility(View.VISIBLE);
+
+        } else if (id == R.id.nav_notification) {
+
+            home.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_cart) {
 
+            home.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_wish_list) {
 
+            home.setVisibility(View.GONE);
+
+        } else if (id == R.id.nav_history) {
+
+            home.setVisibility(View.GONE);
+
         } else if (id == R.id.nav_manage) {
+
+            home.setVisibility(View.GONE);
 
         } else if (id == R.id.nav_sign_out) {
 
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(FeedActivity.this, AuthenticationActivity.class));
+            finish();
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
     }
+
+
+
+
+
 }

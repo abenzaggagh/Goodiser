@@ -7,20 +7,32 @@
     <group
         android:id="@+id/nav_menu"
         android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
+
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_notifications"
+            android:title="@string/notifications" />
+
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_cart"
-            android:title="Cart" />
+            android:title="@string/cart" />
         <item
             android:id="@+id/nav_wish_list"
             android:icon="@drawable/ic_wish_list"
-            android:title="Wish List" />
-    </group>
+            android:title="@string/wish_list" />
 
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history"
+            android:title="@string/history" />
+
+    </group>
 
     <group
         android:id="@+id/sign_out_group"
@@ -28,12 +40,11 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_sign_out"
-            android:title="Sign Out" />
+            android:title="@string/sign_out" />
     </group>
-
 
 </menu>

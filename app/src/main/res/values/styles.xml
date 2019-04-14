@@ -111,7 +111,7 @@
         <item name="android:text">@string/sign_in</item>
         <item name="android:textSize">@dimen/heading_6</item>
         <item name="android:textColor">@color/primaryTextColor</item>
-        <item name="android:background">@drawable/facebook_button</item>
+
     </style>
 
     <style name="Goodiser.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">

@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text="@string/notification"
                 android:textColor="@color/com_facebook_button_background_color_focused"
-                android:textSize="@dimen/drawable_ic" />
+                android:textSize="@dimen/subtitle_1" />
 
             <ImageButton
                 android:id="@+id/close_notif"
@@ -63,9 +63,11 @@
             android:layout_height="170dp"
             android:layout_marginTop="60dp"
 
+            android:layout_marginBottom="29dp"
+
+
             android:orientation="vertical"
-
-
+            app:layout_constraintBottom_toTopOf="@+id/forgot_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -75,8 +77,8 @@
 
                 style="@style/Goodiser.EditText"
 
-                app:errorEnabled="true"
                 android:layout_marginBottom="8dp"
+                app:errorEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/password_input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +91,8 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/accentColor"
                     android:importantForAutofill="no"
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:textSize="14sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -97,8 +100,8 @@
                 android:id="@+id/password_input_layout"
 
                 style="@style/Goodiser.EditText"
-                app:errorEnabled="true"
                 android:layout_marginBottom="16dp"
+                app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_input_layout">
@@ -110,7 +113,8 @@
                     android:layout_marginTop="8dp"
                     android:autofillHints="no"
 
-                    android:padding="8dp" />
+                    android:padding="8dp"
+                    android:textSize="14sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -186,8 +190,8 @@
             style="@style/Goodiser.Button.Borderless.FORGET_PASSWORD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toTopOf="@+id/sign_in_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -239,13 +243,13 @@
 
                 style="@style/Goodiser.EditText"
 
-                android:layout_marginBottom="8dp">
+                >
 
                 <EditText
                     android:id="@+id/name_sign_up"
                     style="@style/Goodiser.EditText.SIGN_UP"
                     android:layout_marginTop="0dp"
-                    android:drawableLeft="@drawable/ic_email"
+                    android:drawableStart="@drawable/ic_email"
                     android:hint="@string/name"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
@@ -461,7 +465,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/heebo_medium"
             android:text="@string/back"
             android:typeface="normal"
