@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Database {
 
     private static FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -35,9 +36,6 @@ public class Database {
         return userMap;
 
     }
-
-
-
     public static Boolean insertUser(User user) {
 
         Map<String, Object> userMap = mapUser(user);
@@ -51,7 +49,6 @@ public class Database {
 
         return true;
     }
-
     public static User getUser(String UID) {
 
         Query query = users.whereEqualTo("UID", UID);
@@ -77,6 +74,13 @@ public class Database {
 
             }
         });*/
+
+        return null;
+    }
+
+    private static CollectionReference products = database.collection("Products");
+
+    public static ArrayList<Product> getProducts() {
 
         return null;
     }

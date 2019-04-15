@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -22,15 +23,19 @@ import android.widget.Toast;
 
 import com.goodiser.android.R;
 import com.goodiser.android.auth.AuthenticationActivity;
+import com.goodiser.android.util.ProductAdapter;
 import com.goodiser.modal.Database;
+import com.goodiser.modal.Product;
 import com.goodiser.modal.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 
 public class FeedActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-//    RecyclerView topProductRecycler = (RecyclerView) findViewById(R.id.top_product_recycler);
+    RecyclerView productRecycler;
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -40,6 +45,9 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView = null;
     ConstraintLayout home;
     TabLayout tabLayout;
+
+    ProductAdapter productAdapter;
+    ArrayList<Product> products = new ArrayList<Product>();
 
     private TextView mUsername = null;
 
@@ -68,10 +76,20 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
         navigationView.getMenu().getItem(0).setChecked(true);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getProducts();
+
+        productRecycler = (RecyclerView) findViewById(R.id.product_recycler);
+
+        productAdapter = new ProductAdapter(products);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+
+        productRecycler.setLayoutManager(layoutManager);
+        productRecycler.setAdapter(productAdapter);
+
         home = (ConstraintLayout) findViewById(R.id.home_content);
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
-        // mUsername.setText("Amine BEN ZAGGAGH");
 
     }
 
@@ -149,7 +167,13 @@ public class FeedActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void getProducts() {
 
+        this.products.add(new Product("iPhone 7"));
+        this.products.add(new Product("iPhone SE"));
+        this.products.add(new Product("iPhone XR"));
+
+    }
 
 
 

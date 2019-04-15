@@ -14,6 +14,12 @@ public class Product {
         this.price = 0.0;
     }
 
+    public Product(String title) {
+        this.productID = "";
+        this.title = title;
+
+    }
+
     public Product(String productID, String title, String description, Double price) {
         this.productID = productID;
         this.title = title;

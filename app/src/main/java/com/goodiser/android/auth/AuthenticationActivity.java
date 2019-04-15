@@ -2,6 +2,7 @@ package com.goodiser.android.auth;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -41,7 +42,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
-public class AuthenticationActivity extends AppCompatActivity {
+public class AuthenticationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth = null;
     private FirebaseFirestore mDatabase = null;
@@ -53,11 +54,11 @@ public class AuthenticationActivity extends AppCompatActivity {
     private TextInputLayout mEmailLayout = null;
     private TextInputLayout mPasswordLayout = null;
 
-    private EditText mEmailView = null;
-    private EditText mPasswordView = null;
-
     private EditText mNameView = null;
     private EditText mPhoneView = null;
+
+    private EditText mEmailView = null;
+    private EditText mPasswordView = null;
 
     private Button mSignInButton = null;
     private ProgressBar mSignInProgress = null;
@@ -72,6 +73,8 @@ public class AuthenticationActivity extends AppCompatActivity {
     private Button mToSignUp;
     private Button mToSignIn;
 
+    private LoginButton loginButton;
+
     private LinearLayout mNotification;
     private ImageButton mCloseNotification;
 
@@ -80,9 +83,10 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected String PHONE = null;
     protected String PASSWORD = null;
 
-    private LoginButton loginButton;
 
+    private Boolean mFacebookAuth = false;
     private CallbackManager mCallbackManager;
+    private LoginResult mLoginResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,111 +98,16 @@ public class AuthenticationActivity extends AppCompatActivity {
         AppEventsLogger.activateApp(this);
 
         mAuth = FirebaseAuth.getInstance();
+        mCallbackManager = CallbackManager.Factory.create();
 
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
             finish();
         }
 
-        mSignInView = (ConstraintLayout) findViewById(R.id.sign_in_layout);
-        mSignUpView = (ConstraintLayout) findViewById(R.id.sign_up_layout);
-        mForgetView = (ConstraintLayout) findViewById(R.id.forget_layout);
+        initializeWidget();
 
-        mNotification = (LinearLayout) findViewById(R.id.notification);
-        mCloseNotification = (ImageButton) findViewById(R.id.close_notif);
-
-        mEmailLayout = (TextInputLayout) findViewById(R.id.email_input_layout);
-        mPasswordLayout = (TextInputLayout) findViewById(R.id.password_input_layout);
-
-        mEmailView = (EditText) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
-
-        mSignInButton = (Button) findViewById(R.id.sign_in_button);
-        mSignInProgress = (ProgressBar) findViewById(R.id.sign_in_progress);
-
-        forgetPassword = (Button) findViewById(R.id.forgot_password);
-
-        mSignUpButton = (Button) findViewById(R.id.sign_up_button);
-        mSignUpProgress = (ProgressBar) findViewById(R.id.sign_up_progress);
-
-        mRestPassword = (Button) findViewById(R.id.rest_password);
-
-        mToSignUp = (Button) findViewById(R.id.to_sign_up);
-        mToSignIn = (Button) findViewById(R.id.to_sign_in);
-        mBack = (Button) findViewById(R.id.forget_back);
-
-        mSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn(v);
-            }
-        });
-        mSignUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signUp(v);
-            }
-        });
-        mRestPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                forgotPassword(v);
-            }
-        });
-
-        mToSignIn.setOnClickListener(new View.OnClickListener() {
-           @Override
-          public void onClick(View v) {
-                  toSignIn();
-           }
-        });
-        mToSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toSignUp();
-            }
-        });
-        forgetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toForget();
-            }
-        });
-        mBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                back();
-            }
-        });
-        mCloseNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeNotification();
-            }
-        });
-
-        mCallbackManager = CallbackManager.Factory.create();
-
-        loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("FB", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d("FB", "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d("FB", "facebook:onError", error);
-            }
-
-        });
+        initializeOnClickListeners();
 
     }
 
@@ -228,6 +137,54 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     }
 
+    public void initializeWidget() {
+
+        mSignInView = (ConstraintLayout) findViewById(R.id.sign_in_layout);
+        mSignUpView = (ConstraintLayout) findViewById(R.id.sign_up_layout);
+        mForgetView = (ConstraintLayout) findViewById(R.id.forget_layout);
+
+        mNotification = (LinearLayout) findViewById(R.id.notification);
+        mCloseNotification = (ImageButton) findViewById(R.id.close_notif);
+
+        mEmailLayout = (TextInputLayout) findViewById(R.id.email_input_layout);
+        mPasswordLayout = (TextInputLayout) findViewById(R.id.password_input_layout);
+
+        mEmailView = (EditText) findViewById(R.id.email);
+        mPasswordView = (EditText) findViewById(R.id.password);
+
+        mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        mSignInProgress = (ProgressBar) findViewById(R.id.sign_in_progress);
+
+        forgetPassword = (Button) findViewById(R.id.forgot_password);
+
+        mSignUpButton = (Button) findViewById(R.id.sign_up_button);
+        mSignUpProgress = (ProgressBar) findViewById(R.id.sign_up_progress);
+
+        mRestPassword = (Button) findViewById(R.id.rest_password);
+
+        mToSignUp = (Button) findViewById(R.id.to_sign_up);
+        mToSignIn = (Button) findViewById(R.id.to_sign_in);
+        mBack = (Button) findViewById(R.id.forget_back);
+
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email", "public_profile");
+
+    }
+
+    public void initializeOnClickListeners() {
+
+        mSignInButton.setOnClickListener(this);
+        mSignUpButton.setOnClickListener(this);
+        mRestPassword.setOnClickListener(this);
+
+        mToSignIn.setOnClickListener(this);
+        mToSignUp.setOnClickListener(this);
+        forgetPassword.setOnClickListener(this);
+        mBack.setOnClickListener(this);
+        mCloseNotification.setOnClickListener(this);
+
+    }
+
     public void toSignUp() {
 
         mNameView = (EditText) findViewById(R.id.name_sign_up);
@@ -251,21 +208,27 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     public void toForget() {
+
         mForgetView.setVisibility(View.VISIBLE);
         mSignInView.setVisibility(View.GONE);
 
         mEmailView = (EditText) findViewById(R.id.forget_email);
+
     }
 
     public void back() {
+
         mForgetView.setVisibility(View.GONE);
         mSignInView.setVisibility(View.VISIBLE);
 
         mEmailView = (EditText) findViewById(R.id.email);
+
     }
 
     public void closeNotification() {
+
         mNotification.setVisibility(View.GONE);
+
     }
 
     private boolean isEmailValid(String email) {
@@ -351,7 +314,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         mSignUpButton.setVisibility(View.GONE);
         mSignUpProgress.setVisibility(View.VISIBLE);
 
-
         mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -390,12 +352,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                         } else {
 
-
                             Log.e("sign_up", "User not signed up");
 
                             mSignUpButton.setVisibility(View.VISIBLE);
                             mSignUpProgress.setVisibility(View.GONE);
-
 
                         }
 
@@ -408,26 +368,31 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         this.EMAIL = mEmailView.getText().toString();
 
-        mAuth.sendPasswordResetEmail(EMAIL).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
+        if (this.isEmailValid(EMAIL)) {
 
-                    Toast.makeText(AuthenticationActivity.this, "Rest Password Email has been sent", Toast.LENGTH_LONG).show();
-
-                    back();
-
-                } else {
-
-
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    mAuth.sendPasswordResetEmail(EMAIL).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AuthenticationActivity.this, "Password Rest Email has been sent", Toast.LENGTH_LONG).show();
+                                back();
+                            } else {
+                                Toast.makeText(AuthenticationActivity.this, "Please enter a valid or existing email", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
-            }
-        });
+            });
 
+        } else {
+            Toast.makeText(AuthenticationActivity.this, "The email address is required", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("FB", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -438,27 +403,91 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            if (user.getDisplayName() != null) {
-                                Log.d("FB", "handleFacebookAccessToken:" + user.getDisplayName());
-                                Log.d("FB", "handleFacebookAccessToken:" + user.getEmail());
-                                Log.d("FB", "handleFacebookAccessToken:" + user.getPhoneNumber());
-                            } else {
-                                Log.d("FB", "handleFacebookAccessToken:" + user.getEmail());
-                                Log.d("FB", "handleFacebookAccessToken:" + user.getPhoneNumber());
-                            }
-
                             Intent intent = new Intent(AuthenticationActivity.this, FeedActivity.class);
                             startActivity(intent);
                             finish();
 
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("FB", "signInWithCredential:failure", task.getException());
 
                         }
 
                     }
                 });
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+
+            case R.id.sign_in_button:
+                signIn(v);
+                break;
+
+            case R.id.sign_up_button:
+                signUp(v);
+                break;
+
+            case R.id.forgot_password:
+                toForget();
+                break;
+
+            case R.id.rest_password:
+                forgotPassword(v);
+                break;
+
+            case R.id.to_sign_in:
+                toSignIn();
+                break;
+
+            case R.id.to_sign_up:
+                toSignUp();
+                break;
+
+            case R.id.forget_back:
+                back();
+                break;
+
+            case R.id.close_notif:
+                closeNotification();
+                break;
+
+            case R.id.login_button:
+
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+                            @Override
+                            public void onSuccess(LoginResult loginResult) {
+                                // Log.d("FB", "facebook:onSuccess:" + loginResult);
+                                mLoginResult = loginResult;
+                                mFacebookAuth = true;
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                Log.d("FB", "facebook:onCancel");
+                            }
+
+                            @Override
+                            public void onError(FacebookException error) {
+                                Log.d("FB", "facebook:onError", error);
+                            }
+
+                        });
+                    }
+                });
+
+                if (mFacebookAuth) {
+                    handleFacebookAccessToken(mLoginResult.getAccessToken());
+                }
+
+                break;
+
+        }
+
     }
 
 

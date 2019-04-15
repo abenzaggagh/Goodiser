@@ -31,7 +31,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i) {
-
+        //productViewHolder.productImage.setImageDrawable();
+        productViewHolder.productTitle.setText(products.get(i).getTitle());
     }
 
 
