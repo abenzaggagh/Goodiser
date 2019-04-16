@@ -167,7 +167,7 @@
         <item name="android:textSize">@dimen/body_2</item>
         <item name="android:labelFor">@string/password</item>
         <item name="android:inputType">textPassword</item>
-        <item name="android:drawableLeft">@drawable/ic_password</item>
+        <item name="android:drawableStart">@drawable/ic_password</item>
         <item name="android:contentDescription">@string/password</item>
     </style>
 

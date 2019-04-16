@@ -83,7 +83,6 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
     protected String PHONE = null;
     protected String PASSWORD = null;
 
-
     private Boolean mFacebookAuth = false;
     private CallbackManager mCallbackManager;
     private LoginResult mLoginResult;

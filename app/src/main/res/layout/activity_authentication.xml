@@ -88,11 +88,13 @@
                     android:id="@+id/email"
                     style="@style/Goodiser.EditText.Email"
 
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
                     android:backgroundTint="@color/accentColor"
                     android:importantForAutofill="no"
                     android:padding="8dp"
-                    android:textSize="14sp" />
+                    android:paddingBottom="0dp"
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -100,8 +102,12 @@
                 android:id="@+id/password_input_layout"
 
                 style="@style/Goodiser.EditText"
+                android:layout_width="match_parent"
                 android:layout_marginBottom="16dp"
                 app:errorEnabled="true"
+                android:drawableStart="@drawable/ic_password"
+                app:passwordToggleEnabled="true"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/email_input_layout">
@@ -110,11 +116,13 @@
                     android:id="@+id/password"
                     style="@style/Goodiser.EditText.Password"
 
+                    android:layout_width="match_parent"
                     android:layout_marginTop="8dp"
-                    android:autofillHints="no"
 
+                    android:layout_marginBottom="0dp"
+                    android:autofillHints="no"
                     android:padding="8dp"
-                    android:textSize="14sp" />
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
