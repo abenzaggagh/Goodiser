@@ -93,8 +93,8 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
+        // FacebookSdk.sdkInitialize(getApplicationContext());
+        // AppEventsLogger.activateApp(this);
 
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
@@ -341,9 +341,6 @@ public class AuthenticationActivity extends AppCompatActivity implements View.On
 
                                         startActivity(new Intent(AuthenticationActivity.this, FeedActivity.class));
                                         finish();
-
-                                    }
-                                    else {
 
                                     }
                                 }
